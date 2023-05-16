@@ -8,11 +8,6 @@ class SignUpView(generic.CreateView):
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
 
-""" def profileView(request, username):
-    return render(
-            request,
-            "accounts/profile.html",
-            {
-                "error_message": "You are not logged in!.",
-            },
-        ) """
+def ProfileView(request):
+    return render(request, 'accounts/profile.html')
+
