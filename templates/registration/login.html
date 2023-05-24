@@ -1,8 +1,22 @@
-{% block content %}
-  <h2>Log In</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log In</button>
-  </form>
-{% endblock %}
+{% extends 'blogProject/layout.html' %}
+<body>
+  <main>
+    {% block content %}
+    <title>Log In</title>
+
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit">Log In</button>
+    </form>
+
+    <a href="{% url 'password_reset' %}">
+      <button>Forgot password</button>
+    </a>
+
+    <a href="{% url 'signup' %}">
+      <button>Create account</button>
+    </a>
+
+    {% endblock %}
+  </main>
+</body>

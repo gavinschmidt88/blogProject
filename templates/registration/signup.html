@@ -1,8 +1,15 @@
-{% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
-  </form>
-{% endblock %}
+{% extends 'blogProject/layout.html' %}
+<body>
+  <main>
+    {% block content %}
+    <title>Sign up</title>
+    <h1>Create your account</h1>
+    <h6>
+      <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Sign Up</button>
+      </form>
+    </h6>
+    {% endblock %}
+  </main>
+</body>

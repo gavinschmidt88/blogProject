@@ -1,0 +1,182 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- MDB -->
+    <link rel="stylesheet" href="{% static 'blog/css/mdb.min.css' %}" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static 'blog/css/mdb.min.css' %}" />
+  </head>
+  <body>
+    <header>
+      <style>
+        #intro {
+          /* Margin to fix overlapping fixed navbar */
+          margin-top: 58px;
+        }
+        @media (max-width: 991px) {
+          #intro {
+            /* Margin to fix overlapping fixed navbar */
+            margin-top: 45px;
+          }
+        }
+
+        body {
+          margin: 0; /* Reset default margin */
+          padding-top: 75px; /* Adjust the top padding to make space for the navigation bar */
+        }
+        main {
+          margin-top: 20px; /* Adjust the margin-top to create space between navigation bar and content */
+        }
+      </style>
+      {%block navigation%}
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container-fluid">
+          <!-- Navbar brand -->
+          <a class="navbar-brand" href="{% url 'home' %}">
+            <img
+              src="{% static 'blog/images/GS_logo.jpg' %}"
+              height="50"
+              alt=""
+              loading="lazy"
+              style="margin-top: -3px"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarExample01"
+            aria-controls="navbarExample01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarExample01">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" aria-current="page" href="{% url 'home' %}"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}" rel="nofollow"
+                  >Profile</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://mdbootstrap.com/docs/standard/"
+                  >Posts</a
+                >
+              </li>
+            </ul>
+
+            <ul class="navbar-nav d-flex flex-row">
+              <!-- Icons -->
+              <li class="nav-item me-3 me-lg-0">
+                <a
+                  class="nav-link"
+                  href="https://www.youtube.com"
+                  rel="nofollow"
+                  target="_blank"
+                >
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </li>
+              <li class="nav-item me-3 me-lg-0">
+                <a
+                  class="nav-link"
+                  href="https://www.facebook.com"
+                  rel="nofollow"
+                  target="_blank"
+                >
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="nav-item me-3 me-lg-0">
+                <a
+                  class="nav-link"
+                  href="https://twitter.com"
+                  rel="nofollow"
+                  target="_blank"
+                >
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li class="nav-item me-3 me-lg-0">
+                <a
+                  class="nav-link"
+                  href="https://github.com"
+                  rel="nofollow"
+                  target="_blank"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+              </li>
+            </ul>
+
+            <!-- Avatar -->
+            <div class="dropdown">
+              <a
+                class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                href="#"
+                id="navbarDropdownMenuAvatar"
+                role="button"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                  class="rounded-circle"
+                  height="25"
+                  alt="Black and White Portrait of a Man"
+                  loading="lazy"
+                />
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdownMenuAvatar"
+              >
+                <li>
+                  <a class="dropdown-item" href="#">My profile</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Settings</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+      {%endblock%}
+    </header>
+
+    <!--Main layout-->
+    <main>
+      {% block content %}
+      <!-- Default content -->
+      {% endblock %}
+    </main>
+    <!--Main layout-->
+
+    <!--Footer-->
+    <footer></footer>
+    <!--Footer-->
+
+    <!-- MDB -->
+    <script src="{% static 'blog/js/mdb.min.js' %}"></script>
+    <!-- Custom scripts -->
+    <script src="{% static 'blog/js/mdb.min.js' %}"></script>
+  </body>
+</html>
