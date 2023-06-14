@@ -1,0 +1,92 @@
+#intro {
+  /* Margin to fix overlapping fixed navbar */
+  margin-top: 58px;
+}
+@media (max-width: 991px) {
+  #intro {
+    /* Margin to fix overlapping fixed navbar */
+    margin-top: 45px;
+  }
+}
+
+body {
+  margin: 0; /* Reset default margin */
+  padding-top: 75px; /* Adjust the top padding to make space for the navigation bar */
+}
+main {
+  margin-top: 20px; /* Adjust the margin-top to create space between navigation bar and content */
+}
+
+/* Profile */
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 100px 0px 100px;
+}
+
+.profile-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-top-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile-top-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 75px;
+  margin: 45px 0px 0px 0px;
+}
+
+.btn-primary {
+  margin-bottom: 5px;
+}
+
+#profile-picture {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  width: 200px;
+  background-color: grey;
+  border-radius: 100%;
+  margin-right: 40px;
+}
+
+.profile-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+  margin: 50px 0px 0px 0px;
+}
+
+.profile-about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-about-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-post-container {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid green;
+}
+
+.profile-user-posts {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid red;
+}
