@@ -37,21 +37,23 @@
             <div class="profile-post-container">
               <h3>User posts</h3>
               <div class="profile-user-posts">
-                {% for post in user_posts %}
-                <div class="card mb-4">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ post.title }}</h5>
-                    <p class="card-text">{{ post.content }}</p>
-                    <p class="card-text">
-                      <small class="text-muted"
-                        >Posted on {{ post.created_at }}</small
-                      >
-                    </p>
+                <div class="row">
+                  {% for post in user_posts %}
+                  <div class="col-md-6">
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.content }}</p>
+                        <p class="card-text">
+                          <small class="text-muted"
+                            >Posted on {{ post.created_at }}</small
+                          >
+                        </p>
+                      </div>
+                    </div>
                   </div>
+                  {% endfor %}
                 </div>
-                {% empty %}
-                <p>No posts found.</p>
-                {% endfor %}
               </div>
             </div>
           </div>
@@ -60,10 +62,10 @@
           {% else %}
           <p>You are not logged in!</p>
           <p><a href="{% url 'login' %}">Log in</a></p>
-          {% endif %}
         </div>
       </body>
-      {% endblock %}
     </main>
+    {% endif %}
   </head>
 </html>
+{% endblock %}

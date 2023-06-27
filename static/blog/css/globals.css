@@ -56,7 +56,11 @@ main {
   height: 200px;
   width: 200px;
   background-color: grey;
+  background-image: url("/static/blog/images/default-profile-pic.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 100%;
+  background-position: center;
   margin-right: 40px;
 }
 

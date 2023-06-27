@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
     path("signup/", SignUpView.as_view(), name="signup"),
-    path("accounts/profile/", views.ProfileView, name="profile"),
+    path("accounts/profile/", views.user_posts, name="profile"),
     path("", views.EditProfileView, name="edit"),
     path('user/<str:username>/', views.user_posts, name='user_posts'),
 ]
