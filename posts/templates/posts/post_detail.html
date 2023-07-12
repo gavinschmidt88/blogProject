@@ -1,6 +1,20 @@
-<!-- post_detail.html -->
-<h1>{{ post.title }}</h1>
-<p>{{ post.content }}</p>
-<p>Author: {{ post.created_by.username }}</p>
-<p>Created at: {{ post.created_at }}</p>
-<p>Updated at: {{ post.updated_at }}</p>
+{% extends 'blogProject/layout.html' %} {% load static %} {% block content %}
+<html>
+  <head>
+    <title>Post details</title>
+    <link rel="stylesheet" href="{% static 'blog/css/globals.css' %}" />
+  </head>
+  <body>
+    <div class="post-details-container">
+      <h1>Title: {{ post.title }}</h1>
+      <p>Content: {{ post.content }}</p>
+      <p>Author: {{ post.created_by.username }}</p>
+      <p>Created at: {{ post.created_at }}</p>
+      <p>Updated at: {{ post.updated_at }}</p>
+      <a href="{% url 'profile' %}">
+        <button class="btn btn-primary w-15">Back</button>
+      </a>
+    </div>
+  </body>
+</html>
+{% endblock %}

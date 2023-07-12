@@ -1,0 +1,53 @@
+{% extends 'blogProject/layout.html' %} {% load static %} {% block content %}
+<html>
+  <head>
+    <title>Post details</title>
+    <link rel="stylesheet" href="{% static 'blog/css/globals.css' %}" />
+  </head>
+  <body>
+    <div class="edit-profile-container">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="first_name">First Name:</label>
+          <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            value="{{ user.first_name }}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="last_name">Last Name:</label>
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            value="{{ user.last_name }}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value="{{ user.username }}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value="{{ user.email }}"
+          />
+        </div>
+      </div>
+        <button class="btn btn-primary w-15" type="submit">Save</button>
+      </form>
+    
+  </body>
+</html>
+{% endblock %}

@@ -6,6 +6,7 @@ from django.db import models
 class CustomUser(AbstractUser):
     bio = models.TextField()
     location = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
 
     # You can add more custom fields here
 

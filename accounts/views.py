@@ -35,8 +35,23 @@ def user_posts(request):
         return render(request, 'accounts/profile.html')
 
 
-# def ProfileView(request):
+def edit_profile(request):
+    user = request.user
 
+    if request.method == 'POST':
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        username = request.POST['username']
 
-def EditProfileView(request):
-    return render(request, 'accounts/edit.html')
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.username = username
+        user.save()
+
+        # Redirect to the profile page after saving changes
+        return redirect('profile')
+
+    context = {'user': user}
+    return render(request, 'accounts/edit_profile.html', context)

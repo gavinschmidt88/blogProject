@@ -1,15 +1,31 @@
-{% extends 'blogProject/layout.html' %} {% block content %}
+{% extends 'blogProject/layout.html' %} {% block content %}
 <html>
   <head>
-    {% if user.is_authenticated %}
-    <title>{{ user.username }}'s profile</title>
+    {% load static %} {% if user.is_authenticated %}
+    <title>
+      {% if user.first_name != "" %} {{ user.first_name }}'s profile
+      {% elif user.username != "" %} {{ user.username }}'s profile
+      {% else %} Hello user 
+      {% endif %}
+    </title>
+  </head>
+    <script>
+      // Add the CSRF token to the JavaScript code
+      const csrfToken = "{{ csrf_token }}";
+    </script>
     <main>
       <body>
         <div class="profile-container">
           <div class="profile-top">
             <div class="profile-top-left">
               <img id="profile-picture" />
-              <h1>Hello {{ user.username }}!</h1>
+              {% if user.first_name != "" %}
+              <h1 class="mb-3 h2">Hello {{ user.first_name }}</h1>
+              {% elif user.username != "" %}
+              <h1 class="mb-3 h2">Hello {{ user.username }}</h1>
+              {% else %}
+              <h1 class="mb-3 h2">Hello user</h1>
+              {% endif %}
             </div>
 
             <div class="profile-top-right">
@@ -28,37 +44,62 @@
             <div class="profile-about-container">
               <h3>About info</h3>
               <div class="profile-about-info">
-                <p>Biograpghy</p>
-                <p>Sign-up date</p>
-                <p>Location</p>
-                <p>Email</p>
+                <h5>Name</h5>
+                <p>{{user.first_name}} {{user.last_name}}</p>
+                <h5>Username</h5>
+                <p>{{user.username}}</p>
+                <h5>Sign-up date</h5>
+                <p>{{user.date_joined}}</p>
+                <h5>Email</h5>
+                <p>{{user.email}}</p>
               </div>
             </div>
             <div class="profile-post-container">
               <h3>User posts</h3>
               <div class="profile-user-posts">
                 <div class="row">
-                  {% for post in user_posts %}
-                  <div class="col-md-6">
+                  {% if user_posts %} {% for post in user_posts %}
+                  <div class="col-md-12">
                     <div class="card mb-4">
-                      <div class="card-body">
-                        <h5 class="card-title">{{ post.title }}</h5>
-                        <p class="card-text">{{ post.content }}</p>
-                        <p class="card-text">
-                          <small class="text-muted"
-                            >Posted on {{ post.created_at }}</small
+                      <div class="card-body d-flex justify-content-between">
+                        <div>
+                          <h5 class="card-title">{{ post.title }}</h5>
+                          <p class="card-text">{{ post.content }}</p>
+                          <p class="card-text">
+                            <small class="text-muted"
+                              >Posted on {{ post.created_at }}</small
+                            >
+                          </p>
+                        </div>
+                        <div class="user-post-buttons">
+                          <a
+                            href="{% url 'posts:post_detail' post_id=post.id %}"
+                            class="btn btn-primary w-15"
+                            >View post</a
                           >
-                        </p>
+                          <a
+                            href="{% url 'posts:edit_post' post_id=post.id %}"
+                            class="btn btn-primary w-15"
+                            >Edit post</a
+                          >
+                          <a
+                            href="{% url 'posts:delete_post' post_id=post.id %}"
+                            class="btn btn-danger delete-post"
+                            data-post-id="{{ post.id }}"
+                            onclick="confirmDelete(event)"
+                            >Delete Post</a
+                          >
+                        </div>
                       </div>
                     </div>
                   </div>
-                  {% endfor %}
+                  {% endfor %} {% else %}
+                  <p>No posts by this user.</p>
+                  {% endif %}
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- <p><a href="/posts/new_post">Make a post</a></p> -->
           {% else %}
           <p>You are not logged in!</p>
           <p><a href="{% url 'login' %}">Log in</a></p>
@@ -66,6 +107,6 @@
       </body>
     </main>
     {% endif %}
-  </head>
+  
 </html>
 {% endblock %}

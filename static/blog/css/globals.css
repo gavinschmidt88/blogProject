@@ -17,6 +17,14 @@ main {
   margin-top: 20px; /* Adjust the margin-top to create space between navigation bar and content */
 }
 
+h5 {
+  font-weight: bold;
+}
+
+.about-info-titles {
+  font-weight: bold;
+}
+
 /* Profile */
 
 .profile-container {
@@ -67,8 +75,6 @@ main {
 .profile-bottom {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 50%;
   margin: 50px 0px 0px 0px;
 }
 
@@ -76,6 +82,9 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin-right: 300px;
+  min-width: 15%;
 }
 
 .profile-about-info {
@@ -86,11 +95,61 @@ main {
 .profile-post-container {
   display: flex;
   flex-direction: column;
-  border: 2px solid green;
+  width: 100%;
 }
 
 .profile-user-posts {
   display: flex;
   flex-direction: column;
-  border: 2px solid red;
+}
+
+.user-post-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-post-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.edit-title-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.edit-content-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-bottom: 20px;
+}
+
+.post-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.edit-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.form-group label {
+  margin-right: 10px;
 }

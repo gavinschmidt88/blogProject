@@ -3,9 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- MDB -->
-    <link rel="stylesheet" href="{% static 'blog/css/mdb.min.css' %}" />
     <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static 'blog/css/mdb.min.css' %}" />
     <link rel="stylesheet" href="{% static 'blog/css/globals.css' %}" />
 
     <meta charset="UTF-8" />
@@ -63,7 +62,7 @@
                   rel="nofollow"
                   target="_blank"
                 >
-                  <i class="fab fa-youtube"></i>
+                  <i class="fas fa-youtube"></i>
                 </a>
               </li>
               <li class="nav-item me-3 me-lg-0">
@@ -73,7 +72,7 @@
                   rel="nofollow"
                   target="_blank"
                 >
-                  <i class="fab fa-facebook-f"></i>
+                  <i class="fas fa-facebook-f"></i>
                 </a>
               </li>
               <li class="nav-item me-3 me-lg-0">
@@ -83,7 +82,7 @@
                   rel="nofollow"
                   target="_blank"
                 >
-                  <i class="fab fa-twitter"></i>
+                  <i class="fas fa-twitter"></i>
                 </a>
               </li>
               <li class="nav-item me-3 me-lg-0">
@@ -93,7 +92,7 @@
                   rel="nofollow"
                   target="_blank"
                 >
-                  <i class="fab fa-github"></i>
+                  <i class="fas fa-github"></i>
                 </a>
               </li>
             </ul>
@@ -121,14 +120,19 @@
                 aria-labelledby="navbarDropdownMenuAvatar"
               >
                 <li>
-                  <a class="dropdown-item" href="#">My profile</a>
+                  <a class="dropdown-item" href="{% url 'profile' %}"
+                    >My profile</a
+                  >
                 </li>
+                {% if user.is_authenticated %}
                 <li>
-                  <a class="dropdown-item" href="#">Settings</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                 </li>
+                {% else %}
                 <li>
-                  <a class="dropdown-item" href="#">Logout</a>
+                  <a class="dropdown-item" href="{% url 'login' %}">Log in</a>
                 </li>
+                {% endif %}
               </ul>
             </div>
           </div>
@@ -161,7 +165,7 @@
           rel="nofollow"
           target="_blank"
         >
-          <i class="fab fa-youtube"></i>
+          <i class="fas fa-youtube"></i>
         </a>
         <a
           href="https://www.facebook.com"
@@ -170,7 +174,7 @@
           rel="nofollow"
           target="_blank"
         >
-          <i class="fab fa-facebook-f"></i>
+          <i class="fas fa-facebook-f"></i>
         </a>
         <a
           href="https://twitter.com"
@@ -179,7 +183,7 @@
           rel="nofollow"
           target="_blank"
         >
-          <i class="fab fa-twitter"></i>
+          <i class="fas fa-twitter"></i>
         </a>
         <a
           href="https://github.com"
@@ -188,22 +192,20 @@
           rel="nofollow"
           target="_blank"
         >
-          <i class="fab fa-github"></i>
+          <i class="fas fa-github"></i>
         </a>
       </div>
 
-      <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-        © 2020 Copyright:
-        <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-      </div>
-      <!-- Copyright -->
+      <div
+        class="text-center p-3"
+        style="background-color: rgba(0, 0, 0, 0.2)"
+      ></div>
     </footer>
     <!--Footer-->
 
-    <!-- MDB -->
-    <script src="{% static 'blog/js/mdb.min.js' %}"></script>
     <!-- Custom scripts -->
     <script src="{% static 'blog/js/mdb.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>
