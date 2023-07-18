@@ -118,6 +118,8 @@ EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
