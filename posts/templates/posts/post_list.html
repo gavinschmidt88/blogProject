@@ -1,28 +1,10 @@
-{% extends 'blogProject/layout.html' %}{% block content %}
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Blog Posts</title>
-  </head>
-
+{% extends 'blogProject/layout.html' %}
+{% block content %}
   <div class="container">
     <h1 class="mt-4 mb-4">Blog Posts</h1>
 
     <div class="row">
-      {% for post in posts %}
-      <div class="col-md-6">
-        <div class="card mb-4">
-          <div class="card-body">
-            <h5 class="card-title">{{ post.title }}</h5>
-            <p class="card-text">{{ post.content }}</p>
-            <p class="card-text">
-              <small class="text-muted">Posted on {{ post.created_at }}</small>
-            </p>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
+      {% include 'posts/card_layout.html' with posts=posts %} 
     </div>
     
     <nav aria-label="Page navigation">
@@ -45,5 +27,54 @@
       </ul>
     </nav>
   </div>
-</html>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(".like-button").click(function () {
+        var postId = $(this).data("post-id");
+        var likeCountElement = $(this).find(".like-count");
+        var dislikeCountElement = $(this).find(".dislike-count");
+  
+        $.ajax({
+          url: "/posts/like/" + postId + "/",
+          type: "POST",
+          data: { csrfmiddlewaretoken: "{{ csrf_token }}" },
+          dataType: "json",
+          success: function (data) {
+            // Deduct dislike count if previous choice was dislike
+            if (dislikeCountElement.text() !== "0") {
+              dislikeCountElement.text(
+                parseInt(dislikeCountElement.text()) - 1
+              );
+            }
+  
+            likeCountElement.text(data.like_count);
+          },
+        });
+      });
+  
+      $(".dislike-button").click(function () {
+        var postId = $(this).data("post-id");
+        var likeCountElement = $(this).find(".like-count");
+        var dislikeCountElement = $(this).find(".dislike-count");
+  
+        $.ajax({
+          url: "/posts/dislike/" + postId + "/",
+          type: "POST",
+          data: { csrfmiddlewaretoken: "{{ csrf_token }}" },
+          dataType: "json",
+          success: function (data) {
+            // Deduct like count if previous choice was like
+            if (likeCountElement.text() !== "0") {
+              likeCountElement.text(parseInt(likeCountElement.text()) - 1);
+            }
+  
+            dislikeCountElement.text(data.dislike_count);
+          },
+        });
+      });
+    });
+  </script>
+  
 {% endblock %}

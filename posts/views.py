@@ -4,6 +4,7 @@ from .models import Post
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 
 
 def post_list(request):
@@ -58,3 +59,23 @@ def delete_post(request, post_id):
     user_posts = Post.objects.filter(created_by_id=request.user)
     context = {'user_posts': user_posts}
     return render(request, 'accounts/profile.html', context)
+
+
+def like_post(request, post_id):
+    if request.method == 'POST':
+        post = get_object_or_404(Post, id=post_id)
+        post.like_count += 1
+        post.save()
+        return JsonResponse({'like_count': post.like_count})
+    else:
+        return JsonResponse({'error': 'Invalid request'})
+
+
+def dislike_post(request, post_id):
+    if request.method == 'POST':
+        post = get_object_or_404(Post, id=post_id)
+        post.dislike_count += 1
+        post.save()
+        return JsonResponse({'dislike_count': post.dislike_count})
+    else:
+        return JsonResponse({'error': 'Invalid request'})

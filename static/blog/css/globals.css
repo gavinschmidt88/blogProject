@@ -150,6 +150,28 @@ h5 {
   width: 100%;
 }
 
-.form-group label {
-  margin-right: 10px;
+.like-dislike-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.like-dislike-buttons label {
+  display: flex;
+  align-items: flex-end;
+  margin-left: 10px;
+}
+
+.like-dislike-buttons input[type="radio"] {
+  display: none;
+}
+
+.like-dislike-buttons .button-label {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.like-dislike-buttons input[type="radio"]:checked + .button-label {
+  background-color: #c4e2ff;
 }
