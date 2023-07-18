@@ -10,7 +10,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.2.0.0']
+ALLOWED_HOSTS = ['127.2.0.0'
+                 'whispering-shelf-67530-244530804060.herokuapp.com']
 
 
 # Application definition
