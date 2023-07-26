@@ -6,15 +6,20 @@
   </head>
   <body>
     <div class="post-details-container">
-      <h1>Title: {{ post.title }}</h1>
+      <h2>Title: {{ post.title }}</h2>
       <p>Content: {{ post.content }}</p>
       <p>Author: {{ post.created_by.username }}</p>
       <p>Created at: {{ post.created_at }}</p>
       <p>Updated at: {{ post.updated_at }}</p>
-      <a href="{% url 'profile' %}">
-        <button class="btn btn-primary w-15">Back</button>
-      </a>
+      <button id="backButton" class="btn btn-primary w-15">Back</button>
     </div>
   </body>
+  <script>
+    document
+      .getElementById("backButton")
+      .addEventListener("click", function () {
+        history.back();
+      });
+  </script>
 </html>
 {% endblock %}

@@ -3437,6 +3437,7 @@ fieldset:disabled .btn {
   display: flex;
   flex-direction: column;
   padding-left: 0;
+  padding-right: 5px;
   margin-bottom: 0;
   list-style: none;
 }

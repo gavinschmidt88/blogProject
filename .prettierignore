@@ -1,2 +1,2 @@
 posts/templates/posts/post_list.html
-accounts/templates/accounts/profile.html
+#accounts/templates/accounts/profile.html

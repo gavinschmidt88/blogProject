@@ -1,10 +1,11 @@
+from .models import Post
 from .forms import PostForm
 from .forms import NewPostForm
-from .models import Post
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
+import random
 
 
 def post_list(request):
@@ -64,9 +65,16 @@ def delete_post(request, post_id):
 def like_post(request, post_id):
     if request.method == 'POST':
         post = get_object_or_404(Post, id=post_id)
-        post.like_count += 1
-        post.save()
-        return JsonResponse({'like_count': post.like_count})
+        user = request.user  # Assuming you have authenticated users
+        print('success')
+
+        if user in post.liked_users.all():
+            post.liked_users.remove(user)
+        else:
+            post.liked_users.add(user)
+            post.disliked_users.remove(user)
+
+        return JsonResponse({'like_count': post.like_count()})
     else:
         return JsonResponse({'error': 'Invalid request'})
 
@@ -74,8 +82,25 @@ def like_post(request, post_id):
 def dislike_post(request, post_id):
     if request.method == 'POST':
         post = get_object_or_404(Post, id=post_id)
-        post.dislike_count += 1
-        post.save()
-        return JsonResponse({'dislike_count': post.dislike_count})
+        user = request.user  # Assuming you have authenticated users
+
+        if user in post.disliked_users.all():
+            post.disliked_users.remove(user)
+        else:
+            post.disliked_users.add(user)
+            post.liked_users.remove(user)
+
+        return JsonResponse({'dislike_count': post.dislike_count()})
     else:
         return JsonResponse({'error': 'Invalid request'})
+
+
+def display_random_posts(request):
+    # Get all the posts
+    all_posts = Post.objects.all()
+
+    # Randomly select 6 posts
+    selected_posts = random.sample(list(all_posts), 6)
+
+    # Pass the selected posts to the template context
+    return render(request, 'home.html', {'selected_posts': selected_posts})
